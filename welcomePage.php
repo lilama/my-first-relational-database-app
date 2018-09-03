@@ -82,6 +82,9 @@
                 <thead>
                     <tr>
                         <th>Société</th>
+                        <th>Adresse</th>
+                        <th>Pays</th>
+                        <th>Numéro TVA</th>
                         <th>Téléphone</th>
                         <th>Type</th>
                         <th>Action</th>

@@ -17,7 +17,7 @@
         </div>
         <div class="field is-grouped is-grouped-centered">
           <div class="control">
-            <button class="button is-link">Log me in</button>
+            <button class="button is-rounded">Log me in</button>
           </div>
         </div>
     </div>

@@ -11,6 +11,6 @@
             </h1>
         </div>
         <div class="column is-offset-1 is-1">
-            <button class="button is-rounded">Déconnection</button>
+            <button class="button is-rounded">Déconnexion</button>
         </div>
     </header>

@@ -1,6 +1,6 @@
 <?php
     include("head.php");
     include("header.php");
-    include("addFacture.php");
+    include("addEnterprise.php");
     include("footer.php");
 ?>
