@@ -1,9 +1,9 @@
 <?php
   class Database{
     public static $host = "localhost";
-    public static $dbName = "dbTest";
+    public static $dbName = "cogip";
     public static $username = "root";
-    public static $password = "";
+    public static $password = ""; // à modifier si jamais il y en a un.
 
     private static function connect(){
       $pdo = new PDO("mysql:host=".self::$host.";dbname=".self::$dbName.";charset=utf8", self::$username, self::$password);

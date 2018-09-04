@@ -1,6 +1,6 @@
 <?php
-  require('./vendor/autoload.php');
-  require_once('Routes.php');
+  require_once('./resources/DatabaseSeed.php');
+  require_once('./resources/Routes.php');
 
   function __autoload($class_name){
     $classPath = './classes/'.$class_name.'.php';
