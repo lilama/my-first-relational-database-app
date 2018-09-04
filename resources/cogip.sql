@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS `cogip`.`societes` (
   CONSTRAINT `fk_societes_typeEntreprise1`
     FOREIGN KEY (`typeEntreprise_id`)
     REFERENCES `cogip`.`typeEntreprise` (`id`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS `cogip`.`personnes` (
   CONSTRAINT `fk_personnes_societes`
     FOREIGN KEY (`societes_id`)
     REFERENCES `cogip`.`societes` (`id`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
@@ -92,12 +92,12 @@ CREATE TABLE IF NOT EXISTS `cogip`.`factures` (
   CONSTRAINT `fk_factures_societes`
     FOREIGN KEY (`societes_id`)
     REFERENCES `cogip`.`societes` (`id`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_factures_personnes`
     FOREIGN KEY (`personnes_id`)
     REFERENCES `cogip`.`personnes` (`id`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
