@@ -1,4 +1,4 @@
-<div class="columns is-centered">
+<div class="columns is-centered logIn">
     <div class="column is-2">
         <div class="field">
             <label class="label">User Name</label>

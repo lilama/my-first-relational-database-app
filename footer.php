@@ -1,4 +1,4 @@
-        <footer class="hero">
+        <footer class="hero footer">
             <div class="hero-body">
                 <div class="container">
                     <h1 class="title has-text-right">

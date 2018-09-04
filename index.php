@@ -1,6 +1,7 @@
 <?php
     include("head.php");
     include("header.php");
-    include("addEnterprise.php");
+    include("navBar.php");
+    include("welcomePage.php");
     include("footer.php");
 ?>

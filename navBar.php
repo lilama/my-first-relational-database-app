@@ -1,11 +1,13 @@
-<nav class="columns is-centered">
-    <div class="column is-offset-1 is-2">
-        <button class="button is-rounded">Accueil</button>
+<article class="columns">
+    <div class="column is-offset-9">
+        <nav class="navbar">
+            <div class="navbar-menu">
+                <div class="navbar-end">
+                    <button class="button is-rounded">Accueil</button>
+                    <button class="button is-rounded">Fournisseurs</button>
+                    <button class="button is-rounded">Clients</button>
+                </div>
+            </div>
+        </nav>
     </div>
-    <div class="column is-2">
-        <button class="button is-rounded">Fournisseurs</button>
-    </div>
-    <div class="column is-2">
-        <button class="button is-rounded">Clients</button>
-    </div>
-</nav>
+</article>
