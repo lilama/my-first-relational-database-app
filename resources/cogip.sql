@@ -23,17 +23,17 @@ CREATE TABLE IF NOT EXISTS `cogip`.`societes` (
   `pays` VARCHAR(255) NOT NULL,
   `numTva` VARCHAR(50) NOT NULL,
   `numTel` VARCHAR(20) NOT NULL,
-  `typeEntreprise_id` INT NOT NULL,
+  `typeEntrepriseID` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_societes_typeEntreprise_idx` (`typeEntreprise_id` ASC),
+  INDEX `fk_societes_typeEntreprise_idx` (`typeEntrepriseID` ASC),
   CONSTRAINT `fk_societes_typeEntreprise1`
-    FOREIGN KEY (`typeEntreprise_id`)
+    FOREIGN KEY (`typeEntrepriseID`)
     REFERENCES `cogip`.`typeEntreprise` (`id`)
     ON DELETE CASCADE
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-INSERT INTO `societes` (`id`, `nom`, `adresse`, `pays`, `numTva`, `numTel`, `typeEntreprise_id`) VALUES
+INSERT INTO `societes` (`id`, `nom`, `adresse`, `pays`, `numTva`, `numTel`, `typeEntrepriseID`) VALUES
 (1, 'Barry', 'impasse Bastin 42\r\n 0444 Châtelet', 'Belgique', 'BE0411905847', '+32(0)100 984926', 1),
 (2, 'De Backer ASBL', 'boulevard Masson 84\n 0795 Thuin', 'Belgique', 'BE0414445663', '+32(0)310 247473', 2),
 (3, 'Parmentier', 'chaussée Jacquet 33\r\n 2857 Izegem', 'Belgique', 'BE0419052173', '069 699790', 1),
@@ -53,17 +53,17 @@ CREATE TABLE IF NOT EXISTS `cogip`.`personnes` (
   `prenom` VARCHAR(255) NOT NULL,
   `numTel` VARCHAR(20) NOT NULL,
   `mail` VARCHAR(45) NOT NULL,
-  `societes_id` INT NOT NULL,
+  `societesID` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_personnes_societes_idx` (`societes_id` ASC),
+  INDEX `fk_personnes_societes_idx` (`societesID` ASC),
   CONSTRAINT `fk_personnes_societes`
-    FOREIGN KEY (`societes_id`)
+    FOREIGN KEY (`societesID`)
     REFERENCES `cogip`.`societes` (`id`)
     ON DELETE CASCADE
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-INSERT INTO `personnes` (`id`, `nom`, `prenom`, `numTel`, `mail`, `societes_id`) VALUES
+INSERT INTO `personnes` (`id`, `nom`, `prenom`, `numTel`, `mail`, `societesID`) VALUES
 (2, 'Wuyts', 'Margaux', '0129877858', 'clemence.andre@gmail.com', 11),
 (3, 'Jansen', 'Nicolas', '+32(0)06536991', 'niels15@gmail.com', 9),
 (4, 'Stevens', 'Eline', '0995 946552', 'thomas.petit@hotmail.com', 9),
@@ -82,30 +82,30 @@ CREATE TABLE IF NOT EXISTS `cogip`.`factures` (
   `numero` VARCHAR(45) NOT NULL,
   `dateFact` DATE NOT NULL,
   `objet` VARCHAR(255) NULL,
-  `societes_id` INT NOT NULL,
-  `personnes_id` INT NOT NULL,
-  INDEX `fk_factures_societes_idx` (`societes_id` ASC),
-  INDEX `fk_factures_personnes_idx` (`personnes_id` ASC),
+  `societesID` INT NOT NULL,
+  `personnesID` INT NOT NULL,
+  INDEX `fk_factures_societes_idx` (`societesID` ASC),
+  INDEX `fk_factures_personnes_idx` (`personnesID` ASC),
   PRIMARY KEY (`id`),
   CONSTRAINT `uk_numero`
     UNIQUE KEY (`numero`),
   CONSTRAINT `fk_factures_societes`
-    FOREIGN KEY (`societes_id`)
+    FOREIGN KEY (`societesID`)
     REFERENCES `cogip`.`societes` (`id`)
     ON DELETE CASCADE
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_factures_personnes`
-    FOREIGN KEY (`personnes_id`)
+    FOREIGN KEY (`personnesID`)
     REFERENCES `cogip`.`personnes` (`id`)
     ON DELETE CASCADE
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-INSERT INTO `factures` (`id`, `numero`, `dateFact`, `objet`, `societes_id`, `personnes_id`) VALUES
-(1, '2018-0001', '2018-06-28', 'Un stock de flamand rose gonflable', 2, 15),
+INSERT INTO `factures` (`id`, `numero`, `dateFact`, `objet`, `societesID`, `personnesID`) VALUES
+(1, '2018-00001', '2018-06-28', 'Un stock de flamand rose gonflable', 2, 15),
 (2, '2018-00002', '2018-02-20', 'Un pot de nutella', 9, 4),
 (3, '2018-00003', '2018-02-19', 'Des sacs de Lego', 11, 2),
-(4, '2018-0004', '2018-06-12', 'une balançoire x2', 2, 6),
+(4, '2018-00004', '2018-06-12', 'une balançoire x2', 2, 6),
 (5, '2018-00005', '2018-04-07', 'Une paire de chaussettes', 11, 2),
 (6, '2018-00006', '2018-01-11', 'Une boite de vieux disques.', 1, 11),
 (7, '2018-00007', '2018-05-22', 'des pommes et pas des poires', 2, 6),
