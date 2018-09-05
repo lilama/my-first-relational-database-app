@@ -1,3 +1,11 @@
+ <?php
+    try{
+        $pdo = new PDO('mysql:host=100.115.92.2:8080;dbname=cogip;charset=utf8', 'root', '');
+    }catch(Exception $error){
+        die("erreur :" . $error->getMessage());
+    }
+ ?>
+
 <article class="hero">
     <div class="hero-body">
         <div class="container">
@@ -7,64 +15,85 @@
         </div>
     </div>
 </article>
-<div class="columns">
+<form action="crudFacture.php" method="post" class="columns">
     <div class="column is-offset-2 is-4">
-        <div class="field">
-            <label class="label">Numéro de la facture</label>
-            <div class="control">
-                <input class="input" type="text" placeholder="Numéro de la facture">
-            </div>
-            <p class="help is-danger">This input is invalid</p>
-        </div>
         <div class="field">
             <label class="label">Date de la facture</label>
             <div class="control">
-                <input class="input" type="date" placeholder="Date de la facture">
+                <input name="date" class="input" type="date" placeholder="Date de la facture">
             </div>
-            <p class="help is-danger">This input is invalid</p>
-        </div>
-        <div class="field">
-            <label class="label">Numéro de la commande</label>
-            <div class="control">
-                <input class="input" type="text" placeholder="Numéro de la commande">
-            </div>
-            <p class="help is-danger">This input is invalid</p>
-        </div>
-        <div class="field">
-            <label class="label">Objet</label>
-            <div class="control">
-                <input class="input" type="text" placeholder="Objet">
-            </div>
-            <p class="help is-danger">This input is invalid</p>
+            <?php
+                if($_GET["date_empty"] == "0"){
+                    echo("
+                    <p class='help is-danger'>This input is empty.</p>
+                    ");
+                }elseif($_GET["date_invalid"] == "0"){
+                    echo("
+                    <p class='help is-danger'>This input is invalid.</p>
+                    ");
+                }
+            ?>
         </div>
         <div class="columns is-multiline ">
             <div class="field column is-half">
                 <label class="label">Société</label>
-                <div class="field has-addons">
-                    <div class="control">
-                        <input class="input" type="text" placeholder="Société">
-                    </div>
-                    <div class="control">
-                        <a class="button is-info">
-                            Search
-                        </a>
-                    </div>
-                </div>
-                <p class="help is-danger">This input is invalid</p>
+                <select name="societe" class="select">
+                    <option></option>
+                    <?php
+                        $prep = $pdo->prepare(
+                            "SELECT
+                                id, nom
+                            FROM
+                                societes;"
+                        );
+                        $prep->execute();
+                        while ($donnees = $prep->fetch()){
+                            echo ('<option value = ' . $donnees['id'] . '>' . $donnees['nom'] . '</option>');
+                        }
+                        $prep->closeCursor();
+                     ?>
+                </select>
+                <?php
+                    if($_GET["societe_empty"] == "0"){
+                        echo("
+                        <p class='help is-danger'>This input is empty.</p>
+                        ");
+                    }elseif($_GET["societe_invalid"] == "0"){
+                        echo("
+                        <p class='help is-danger'>This input is invalid.</p>
+                        ");
+                    }
+                ?>
             </div>
             <div class="field column is-half">
                 <label class="label">Personne de contact</label>
-                <div class="field has-addons">
-                    <div class="control">
-                        <input class="input" type="text" placeholder="Personne de contact">
-                    </div>
-                    <div class="control">
-                        <a class="button is-info">
-                            Search
-                        </a>
-                    </div>
-                </div>
-                <p class="help is-danger">This input is invalid</p>
+                <select name="contact" class="select">
+                    <option></option>
+                    <?php
+                        $prep = $pdo->prepare(
+                            "SELECT
+                                id, nom, prenom
+                            FROM
+                                personnes;"
+                        );
+                        $prep->execute();
+                        while ($donnees = $prep->fetch()){
+                            echo ('<option value = ' . $donnees['id'] . '>' . $donnees['nom'] . " " . $donnees['prenom'] . '</option>');
+                        }
+                        $prep->closeCursor();
+                     ?>
+                </select>
+                <?php
+                    if($_GET["contact_empty"] == "0"){
+                        echo("
+                        <p class='help is-danger'>This input is empty.</p>
+                        ");
+                    }elseif($_GET["contact_invalid"] == "0"){
+                        echo("
+                        <p class='help is-danger'>This input is invalid.</p>
+                        ");
+                    }
+                ?>
             </div>
         </div>
         <div class="field is-grouped is-grouped-centered">
@@ -74,23 +103,22 @@
         </div>
     </div>
     <div class="column is-5">
-        <table class="table is-striped is-narrow is-hoverable is-fullwidth">
-            <thead>
-                <tr>
-                    <th>Produit</th>
-                    <th>Quantité</th>
-                    <th><abbr title="Prix/Unitaire">P./U.</abbr></th>
-                    <th>Prix</th>
-                    <th>Remise</th>
-                    <th>TVA</th>
-                    <th>Prix HTVA</th>
-                </tr>
-            </thead>
-        </table>
-        <div class="columns">
-            <p class="column"><strong>Total HTVA : </strong></p>
-            <p class="column"><strong>TVA : </strong></p>
-            <p class="column"><strong>Total TTC : </strong></p>
+        <div class="field">
+            <label class="label">Objet</label>
+            <div class="control">
+                <textarea name="objet" class="textarea" placeholder="Objet" rows="7"></textarea>
+            </div>
+            <?php
+                if($_GET["object_empty"] == "0"){
+                    echo("
+                    <p class='help is-danger'>This input is empty.</p>
+                    ");
+                }elseif($_GET["object_invalid"] == "0"){
+                    echo("
+                    <p class='help is-danger'>This input is invalid.</p>
+                    ");
+                }
+            ?>
         </div>
     </div>
-</div>
+</form>
