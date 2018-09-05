@@ -2,7 +2,7 @@
 
 <?php ob_start(); ?>
 <h1>Mes factures</h1>
-<table>
+<table class="table is-striped is-narrow is-hoverable is-fullwidth">
       <tr>
         <th>ID</th>
         <th>Numero</th>

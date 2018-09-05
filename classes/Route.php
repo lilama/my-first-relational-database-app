@@ -6,7 +6,11 @@
       self::$validRoutes[] = $route;
 
       if($_GET['url'] == $route){
-        $function->__invoke();
+        if(isset($_GET['id'])){
+          $function->__invoke($_GET['id']);
+        }else{
+          $function->__invoke();
+        }
       }
     }
   }

@@ -6,6 +6,14 @@
   // });
 
   Route::set('factures',function(){
-    FactureController::CreateView('factures');
+    FactureController::CreateView();
+  });
+
+  Route::set('annuaire',function(){
+    PersonneController::CreateView();
+  });
+
+  Route::set('annuaire/contact-details',function($id){
+    PersonneController::CreateViewOne($id);
   });
 ?>

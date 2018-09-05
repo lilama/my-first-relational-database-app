@@ -1,2 +1,5 @@
 RewriteEngine On
-RewriteRule ^([^/]+)/? index.php?url=$1 [L,QSA]
+RewriteCond %{REQUEST_URI} !^/my-first-relational-database-app/public
+RewriteRule ^(.*)/([0-9]*) index.php?url=$1&id=$2 [L,QSA]
+RewriteCond %{REQUEST_URI} !^/my-first-relational-database-app/public
+RewriteRule ^(.*)/? index.php?url=$1 [L,QSA]
